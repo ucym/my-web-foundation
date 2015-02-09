@@ -55,9 +55,9 @@ g.task "images", ->
         .pipe g.dest("./release/img/")
 
 # File watch task
-g.task "watch", ["cs", "stylus", "jade", "images"], ->
+g.task "watch", ->
     g.watch "./src/coffee/**/*.coffee", ["cs"]
-    g.watch "./src/stylus/**/*.styl", ["stylus"]
+    g.watch "./src/styl/**/*.styl", ["stylus"]
     g.watch "./src/jade/**/*.jade", ["jade"]
     g.watch "./src/img/**/*", ["images"]
 
@@ -73,7 +73,7 @@ g.task "bs", ->
             baseDir : "release/"
 
 # Gulpfile watcher
-g.task "self-watch", ["bs"], ->
+g.task "self-watch", ["cs", "stylus", "jade", "images", "bs"], ->
     proc = null
     spawnChildren = ->
         proc.kill() if proc?
