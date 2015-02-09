@@ -57,7 +57,7 @@ g.task "images", ->
 # File watch task
 g.task "watch", ["cs", "stylus", "jade", "images"], ->
     g.watch "./src/coffee/**/*.coffee", ["cs"]
-    g.watch "./src/stylus/**/*.styl", ["stylus"]
+    g.watch "./src/styl/**/*.styl", ["stylus"]
     g.watch "./src/jade/**/*.jade", ["jade"]
     g.watch "./src/img/**/*", ["images"]
 
