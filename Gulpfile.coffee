@@ -74,10 +74,21 @@ g.task "bs", ->
 
 # Gulpfile watcher
 g.task "self-watch", ["cs", "stylus", "jade", "images", "bs"], ->
-    proc = null
+    proc    = null
+    command = null
+    args    = null
+
+    if /^win/.test(process.platform)
+        # windows
+        command = "cmd"
+        args = ["/c", "gulp", "watch"]
+    else
+        command = "gulp"
+        args = ["watch"]
+
     spawnChildren = ->
         proc.kill() if proc?
-        proc = spawn 'gulp', ["watch"], {stdio: 'inherit'}
+        proc = spawn command, args, {stdio: 'inherit'}
 
     g.watch ["Gulpfile.coffee"], spawnChildren
     spawnChildren()
